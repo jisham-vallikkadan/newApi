@@ -1,4 +1,5 @@
 import 'package:apifirstdemo/homepage.dart';
+import 'package:apifirstdemo/service/newsApi.dart';
 import 'package:flutter/material.dart';
 
 class Firstpage extends StatefulWidget {
@@ -9,6 +10,7 @@ class Firstpage extends StatefulWidget {
 }
 
 class _FirstpageState extends State<Firstpage> {
+
   @override
   Widget build(BuildContext context) {
     TextEditingController countrycontroler=TextEditingController();
@@ -50,7 +52,7 @@ appBar: AppBar(title: Text('enter country'),),
                 child: TextButton(
                   onPressed: (){
 
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => Homepage(country: countrycontroler.text,catergory: categorycontroler.text,)));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Homepage(country: countrycontroler.text,category: categorycontroler.text,)));
                   },
                   child: Text('Submit',style: TextStyle(color: Colors.white,fontSize: 20),),
                 ),

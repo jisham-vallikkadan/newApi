@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'detailspage.dart';
 
 class Homepage extends StatefulWidget {
-  String? country;
-  String? catergory;
-  Homepage({Key? key, required this.country, required this.catergory})
+  String country;
+  String category;
+  Homepage({Key? key,required this.country,required this.category })
       : super(key: key);
 
   @override
@@ -15,23 +15,18 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  // List<Newscad> newscard = <Newscad>[
-  //   Newscad(image: 'images/sports.jpg', newsname: 'foodball',discription: 'abcdefg'),
-  //   Newscad(image: 'images/avengers.jpg', newsname: 'Avengers',discription: 'abcghshfas'),
-  //   Newscad(image: 'images/pabther.jpg', newsname: 'black panther',discription: 'fadgsfsdafadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfadgsfsdafasdfasdfgasddgfasdfasdfgasddg'),
-  //
-  // ];
 
   NewsApi newsApi = NewsApi();
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text('News App'),
       ),
       body: FutureBuilder<List<Newscad>>(
-          future: newsApi.getNews(),
+          future: newsApi.getNews('${widget.country}','${widget.category}'),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView.builder(
@@ -44,8 +39,7 @@ class _HomepageState extends State<Homepage> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              // print(newsApi.category);
-                              // print(newsApi.county);
+
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -89,6 +83,7 @@ class _HomepageState extends State<Homepage> {
                                     padding: const EdgeInsets.all(3),
                                     child: Text(
                                       news.source!.name,
+                                // or       snapshot.data[index].source!.name,
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 15),
                                     ),
