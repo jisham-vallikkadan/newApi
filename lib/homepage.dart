@@ -39,7 +39,6 @@ class _HomepageState extends State<Homepage> {
                         children: [
                           GestureDetector(
                             onTap: () {
-
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
