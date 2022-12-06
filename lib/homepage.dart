@@ -7,7 +7,7 @@ import 'detailspage.dart';
 class Homepage extends StatefulWidget {
   String country;
   String category;
-  Homepage({Key? key,required this.country,required this.category })
+  Homepage({Key? key, required this.country, required this.category})
       : super(key: key);
 
   @override
@@ -15,18 +15,16 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-
   NewsApi newsApi = NewsApi();
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text('News App'),
       ),
       body: FutureBuilder<List<Newscad>>(
-          future: newsApi.getNews('${widget.country}','${widget.category}'),
+          future: newsApi.getNews('${widget.country}', '${widget.category}'),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView.builder(
@@ -77,20 +75,21 @@ class _HomepageState extends State<Homepage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Card(
-                                  elevation: 5,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(3),
-                                    child: Text(
-                                      news.source!.name,
-                                // or       snapshot.data[index].source!.name,
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 15),
-                                    ),
+                                elevation: 5,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(3),
+                                  child: Text(
+                                    news.source!.name,
+                                    // or       snapshot.data[index].source!.name,
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 15),
                                   ),
-                                  color: Colors.red,
-                                  shape: StadiumBorder(
-                                      side: BorderSide(
-                                          color: Colors.transparent))),
+                                ),
+                                color: Colors.red,
+                                shape: StadiumBorder(
+                                  side: BorderSide(color: Colors.transparent),
+                                ),
+                              ),
                               Text(
                                 news.title.toString(),
                                 style: TextStyle(
