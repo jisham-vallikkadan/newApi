@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:apifirstdemo/articlesmodelcalss.dart';
 import 'package:http/http.dart' as http;
 
+
 class NewsApi {
   Future<List<Newscad>> getNews(String country, String category) async {
     final url =

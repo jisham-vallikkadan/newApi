@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:apifirstdemo/articlesmodelcalss.dart';
 import 'package:apifirstdemo/service/newsApi.dart';
 import 'package:flutter/material.dart';
 
 import 'detailspage.dart';
+
 
 class Homepage extends StatefulWidget {
   String country;
@@ -24,12 +27,13 @@ class _HomepageState extends State<Homepage> {
         title: Text('News App'),
       ),
       body: FutureBuilder<List<Newscad>>(
-          future: newsApi.getNews('${widget.country}', '${widget.category}'),
+          future: newsApi.getNews('${widget.country}','${widget.category}'),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView.builder(
                   itemBuilder: (context, index) {
                     var news = snapshot.data![index];
+                    print(news);
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -114,6 +118,7 @@ class _HomepageState extends State<Homepage> {
               return Center(child: CircularProgressIndicator());
             }
           }),
+
     );
   }
 }
